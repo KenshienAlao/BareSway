@@ -1,0 +1,6 @@
+set $mod Mod4
+
+include ~/.config/sway/variables.conf
+include ~/.config/sway/keybinds.conf
+include ~/.config/sway/autostart.conf
+include ~/.config/sway/appearance.conf

@@ -43,6 +43,8 @@ PACKAGES=(
     at-spi2-core
     firefox
     thunar 
+    grim
+    slurp
 )
 
 # Only install packages that aren't already present

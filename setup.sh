@@ -43,8 +43,9 @@ PACKAGES=(
     at-spi2-core
     firefox
     thunar 
-    grim
-    slurp
+    grim slurp
+    waybar
+    pipewire pipewire-pulse wireplumber pavucontrol
 )
 
 # Only install packages that aren't already present
@@ -61,6 +62,9 @@ if [[ ${#TO_INSTALL[@]} -gt 0 ]]; then
 else
     info "All packages already installed."
 fi
+
+info "Enabling Pipewire services..."
+systemctl --user enable --now pipewire pipewire-pulse wireplumber
 
 # ── AUR Helper ──────────────────────────────────────────────────────
 step "AUR Helper"
@@ -113,6 +117,8 @@ step "Sway Configuration"
 
 SWAY_SRC="${SCRIPT_DIR}/sway"
 SWAY_DST="${HOME}/.config/sway"
+WAYBAR_SRC="${SWAY_SRC}/waybar"
+WAYBAR_DST="${HOME}/.config/waybar"
 
 if [[ ! -d "$SWAY_SRC" ]]; then
     error "Source config not found at ${SWAY_SRC}"
@@ -120,8 +126,22 @@ if [[ ! -d "$SWAY_SRC" ]]; then
 fi
 
 mkdir -p "$SWAY_DST"
-rsync -a --exclude=".bash_profile" "${SWAY_SRC}/." "$SWAY_DST/"
+rsync -a --delete \
+    --exclude ".bash_profile" \
+    --exclude "waybar" \
+    "${SWAY_SRC}/." "$SWAY_DST/"
 info "Sway config deployed to ${SWAY_DST}"
+
+# ── Waybar Config ───────────────────────────────────────────────────
+step "Waybar Configuration"
+
+if [[ ! -d "$WAYBAR_SRC" ]] || [[ -z "$(ls -A "$WAYBAR_SRC")" ]]; then
+    warn "Waybar config missing or empty, skipping installation"
+else
+    mkdir -p "$WAYBAR_DST"
+    rsync -a --delete "${WAYBAR_SRC}/." "$WAYBAR_DST/"
+    info "Waybar config deployed to ${WAYBAR_DST}"
+fi
 
 # ── Shell Profile ───────────────────────────────────────────────────
 step "Shell Profile"

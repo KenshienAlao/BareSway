@@ -43,10 +43,14 @@ window#waybar {
     color: #cdd6f4;
 }
 
-#battery.warning {
+#battery.charging {
+    color: #a6e3a1;
+}
+
+#battery.warning:not(.charging) {
     color: #f9e2af;
 }
 
-#battery.critical {
+#battery.critical:not(.charging) {
     color: #f38ba8;
 }

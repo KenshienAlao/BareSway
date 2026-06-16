@@ -117,8 +117,12 @@ step "Sway Configuration"
 
 SWAY_SRC="${SCRIPT_DIR}/sway"
 SWAY_DST="${HOME}/.config/sway"
+
 WAYBAR_SRC="${SWAY_SRC}/waybar"
 WAYBAR_DST="${HOME}/.config/waybar"
+
+FOOT_SRC="${SWAY_SRC}/foot"
+FOOT_DST="${HOME}/.config/foot"
 
 if [[ ! -d "$SWAY_SRC" ]]; then
     error "Source config not found at ${SWAY_SRC}"
@@ -129,6 +133,7 @@ mkdir -p "$SWAY_DST"
 rsync -a --delete \
     --exclude ".bash_profile" \
     --exclude "waybar" \
+    --exclude "foot" \
     "${SWAY_SRC}/." "$SWAY_DST/"
 info "Sway config deployed to ${SWAY_DST}"
 
@@ -141,6 +146,17 @@ else
     mkdir -p "$WAYBAR_DST"
     rsync -a --delete "${WAYBAR_SRC}/." "$WAYBAR_DST/"
     info "Waybar config deployed to ${WAYBAR_DST}"
+fi
+
+# ── Foot Config ───────────────────────────────────────────────────
+step "Foot Configuration"
+
+if [[ ! -d "$FOOT_SRC" ]] || [[ -z "$(ls -A "$FOOT_SRC")" ]]; then
+    warn "Foot config missing or empty, skipping installation"
+else
+    mkdir -p "$FOOT_DST"
+    rsync -a --delete "${FOOT_SRC}/." "$FOOT_DST/"
+    info "Foot config deployed to ${FOOT_DST}"
 fi
 
 # ── Shell Profile ───────────────────────────────────────────────────

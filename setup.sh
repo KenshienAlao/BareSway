@@ -108,9 +108,16 @@ if ! command -v "$AUR_HELPER" &>/dev/null; then
     exit 1
 fi
 
-info "Installing code via $AUR_HELPER..."
-$AUR_HELPER -S --needed --noconfirm \
-    visual-studio-code-bin
+echo "Do you want to install VSCode?"
+read -rp "Enter choice [Y/n]: " choice
+
+if [[ "${choice,,}" == "n" ]]; then
+    info "Skipping VSCode installation"
+else
+    info "Installing VSCode via $AUR_HELPER..."
+    $AUR_HELPER -S --needed --noconfirm \
+        visual-studio-code-bin
+fi
 
 # ── Sway Config ─────────────────────────────────────────────────────
 step "Sway Configuration"

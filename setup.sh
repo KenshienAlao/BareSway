@@ -118,12 +118,6 @@ step "Sway Configuration"
 SWAY_SRC="${SCRIPT_DIR}/sway"
 SWAY_DST="${HOME}/.config/sway"
 
-WAYBAR_SRC="${SWAY_SRC}/waybar"
-WAYBAR_DST="${HOME}/.config/waybar"
-
-FOOT_SRC="${SWAY_SRC}/foot"
-FOOT_DST="${HOME}/.config/foot"
-
 if [[ ! -d "$SWAY_SRC" ]]; then
     error "Source config not found at ${SWAY_SRC}"
     exit 1
@@ -134,11 +128,15 @@ rsync -a --delete \
     --exclude ".bash_profile" \
     --exclude "waybar" \
     --exclude "foot" \
+    --exclude "wofi" \
     "${SWAY_SRC}/." "$SWAY_DST/"
 info "Sway config deployed to ${SWAY_DST}"
 
 # ── Waybar Config ───────────────────────────────────────────────────
 step "Waybar Configuration"
+
+WAYBAR_SRC="${SWAY_SRC}/waybar"
+WAYBAR_DST="${HOME}/.config/waybar"
 
 if [[ ! -d "$WAYBAR_SRC" ]] || [[ -z "$(ls -A "$WAYBAR_SRC")" ]]; then
     warn "Waybar config missing or empty, skipping installation"
@@ -151,12 +149,29 @@ fi
 # ── Foot Config ───────────────────────────────────────────────────
 step "Foot Configuration"
 
+FOOT_SRC="${SWAY_SRC}/foot"
+FOOT_DST="${HOME}/.config/foot"
+
 if [[ ! -d "$FOOT_SRC" ]] || [[ -z "$(ls -A "$FOOT_SRC")" ]]; then
     warn "Foot config missing or empty, skipping installation"
 else
     mkdir -p "$FOOT_DST"
     rsync -a --delete "${FOOT_SRC}/." "$FOOT_DST/"
     info "Foot config deployed to ${FOOT_DST}"
+fi
+
+# ── Wofi Config ───────────────────────────────────────────────────
+step "Wofi Configuration"
+
+WOFI_SRC="${SWAY_SRC}/wofi"
+WOFI_DST="${HOME}/.config/wofi"
+
+if [[ ! -d "$WOFI_SRC" ]] || [[ -z "$(ls -A "$WOFI_SRC")" ]]; then
+    warn "Wofi config missing or empty, skipping installation"
+else
+    mkdir -p "$WOFI_DST"
+    rsync -a --delete "${WOFI_SRC}/." "$WOFI_DST/"
+    info "Wofi config deployed to ${WOFI_DST}"
 fi
 
 # ── Shell Profile ───────────────────────────────────────────────────

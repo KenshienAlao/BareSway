@@ -119,6 +119,17 @@ else
         visual-studio-code-bin
 fi
 
+echo "Do you want to install Discord?"
+read -rp "Enter choice [Y/n]: " choice
+
+if [[ "${choice,,}" == "n" ]]; then
+    info "Skipping Discord installation"
+else
+    info "Installing Discord via $AUR_HELPER..."
+    $AUR_HELPER -S --needed --noconfirm \
+        vesktop-bin
+fi
+
 # ── Sway Config ─────────────────────────────────────────────────────
 step "Sway Configuration"
 

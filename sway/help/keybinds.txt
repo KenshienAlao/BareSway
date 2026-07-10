@@ -1,0 +1,69 @@
+SWAY KEYBINDS
+=============
+
+APPS
+-----
+Mod+Enter      Terminal
+Mod+W          Browser
+Mod+D          App Launcher
+Mod+E          File Manager
+Mod+Shift+R    Editor
+Mod+Q          Close Window
+
+NAVIGATION
+----------
+Mod+← ↓ ↑ →    Focus Window
+
+MOVE WINDOWS
+------------
+Mod+Shift+← ↓ ↑ →    Move Window
+
+WORKSPACES
+----------
+Mod+1          Workspace 1
+Mod+2          Workspace 2
+Mod+3          Workspace 3
+Mod+4          Workspace 4
+Mod+5          Workspace 5
+Mod+6          Workspace 6
+Mod+7          Workspace 7
+Mod+8          Workspace 8
+Mod+9          Workspace 9
+Mod+0          Workspace 10
+
+Mod+Shift+1    Move Window to Workspace 1
+Mod+Shift+2    Move Window to Workspace 2
+Mod+Shift+3    Move Window to Workspace 3
+Mod+Shift+4    Move Window to Workspace 4
+Mod+Shift+5    Move Window to Workspace 5
+Mod+Shift+6    Move Window to Workspace 6
+Mod+Shift+7    Move Window to Workspace 7
+Mod+Shift+8    Move Window to Workspace 8
+Mod+Shift+9    Move Window to Workspace 9
+Mod+Shift+0    Move Window to Workspace 10
+
+LAYOUT
+------
+Mod+Alt+F      Fullscreen
+Mod+F          Tabbed Layout
+Mod+Shift+F    Toggle Split
+
+SCREENSHOT
+----------
+Print          Area Screenshot
+
+SYSTEM
+------
+Mod+Shift+C    Reload Sway
+Mod+Shift+E    Exit Sway
+
+RESIZE
+------
+Mod+Shift+Alt+←    Shrink Width
+Mod+Shift+Alt+→    Grow Width
+Mod+Shift+Alt+↑    Shrink Height
+Mod+Shift+Alt+↓    Grow Height
+
+WALLPAPER
+---------
+Mod+P          Wallpaper Picker

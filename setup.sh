@@ -93,6 +93,9 @@ PACKAGES=(
 
     # Wallpaper
     awww
+
+    # yad
+    yad
 )
 
 TO_INSTALL=()
@@ -172,6 +175,7 @@ rsync -a --delete \
     --exclude "foot" \
     --exclude "wofi" \
     --exclude "wallpaper" \
+    --exclude "help" \
     "${SWAY_SRC}/." "$SWAY_DST/"
 info "Sway config deployed to ${SWAY_DST}"
 
@@ -182,6 +186,7 @@ deploy_config "Waybar"    "${SWAY_SRC}/waybar"    "${HOME}/.config/waybar"
 deploy_config "Foot"      "${SWAY_SRC}/foot"      "${HOME}/.config/foot"
 deploy_config "Wofi"      "${SWAY_SRC}/wofi"      "${HOME}/.config/wofi"
 deploy_config "Wallpaper" "${SWAY_SRC}/wallpaper"  "${SWAY_DST}/wallpaper"
+deploy_config "Help"      "${SWAY_SRC}/help"      "${SWAY_DST}/help"
 
 # ── Scripts ──────────────────────────────────────────────────────────
 step "Scripts"

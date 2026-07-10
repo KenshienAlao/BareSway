@@ -77,7 +77,7 @@ PACKAGES=(
     wofi foot
 
     # Portal & Accessibility
-    xdg-utils dbus xdg-desktop-portal xdg-desktop-portal-wlr at-spi2-core
+    qt5-wayland qt6-wayland xdg-utils dbus xdg-desktop-portal xdg-desktop-portal-wlr at-spi2-core
 
     # Apps
     firefox thunar
@@ -96,6 +96,9 @@ PACKAGES=(
 
     # yad
     yad
+
+    # video viewer 
+    mpv
 )
 
 TO_INSTALL=()
